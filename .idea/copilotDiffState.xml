@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/README.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/README.md" />
+              <option name="updatedContent" value="# seamless-bitbucket-comments&#10;&#10;IntelliJ-Plugin-Projekt fuer Bitbucket-Kommentar-Workflows.&#10;&#10;## Projektstruktur&#10;&#10;- `src/main/kotlin` - produktiver Kotlin-Code&#10;- `src/main/resources` - Plugin-Metadaten und statische Ressourcen&#10;- `src/test/kotlin` - Unit-Tests&#10;- `gradle/` - Gradle-Wrapper&#10;&#10;## Schnellstart&#10;&#10;```bash&#10;./gradlew test&#10;./gradlew runIde&#10;```&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/build.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/build.gradle.kts" />
+              <option name="originalContent" value="plugins {&#10;    id(&quot;java&quot;)&#10;    id(&quot;org.jetbrains.kotlin.jvm&quot;) version &quot;2.1.0&quot;&#10;    id(&quot;org.jetbrains.intellij.platform&quot;) version &quot;2.7.1&quot;&#10;}&#10;&#10;group = &quot;dev.silverhorn.fca&quot;&#10;version = &quot;1.0-SNAPSHOT&quot;&#10;&#10;repositories {&#10;    mavenCentral()&#10;    intellijPlatform {&#10;        defaultRepositories()&#10;    }&#10;}&#10;&#10;// Configure IntelliJ Platform Gradle Plugin&#10;// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html&#10;dependencies {&#10;    intellijPlatform {&#10;        create(&quot;IC&quot;, &quot;2025.1.4.1&quot;)&#10;        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)&#10;&#10;        // Add necessary plugin dependencies for compilation here, example:&#10;        // bundledPlugin(&quot;com.intellij.java&quot;)&#10;    }&#10;}&#10;&#10;intellijPlatform {&#10;    pluginConfiguration {&#10;        ideaVersion {&#10;            sinceBuild = &quot;251&quot;&#10;        }&#10;&#10;        changeNotes = &quot;&quot;&quot;&#10;            Initial version&#10;        &quot;&quot;&quot;.trimIndent()&#10;    }&#10;}&#10;&#10;tasks {&#10;    // Set the JVM compatibility versions&#10;    withType&lt;JavaCompile&gt; {&#10;        sourceCompatibility = &quot;21&quot;&#10;        targetCompatibility = &quot;21&quot;&#10;    }&#10;}&#10;&#10;kotlin {&#10;    compilerOptions {&#10;        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)&#10;    }&#10;}&#10;" />
+              <option name="updatedContent" value="plugins {&#10;    id(&quot;java&quot;)&#10;    id(&quot;org.jetbrains.kotlin.jvm&quot;) version &quot;2.1.0&quot;&#10;    id(&quot;org.jetbrains.intellij.platform&quot;) version &quot;2.7.1&quot;&#10;}&#10;&#10;group = &quot;dev.silverhorn.fca&quot;&#10;version = &quot;1.0-SNAPSHOT&quot;&#10;&#10;repositories {&#10;    mavenCentral()&#10;    intellijPlatform {&#10;        defaultRepositories()&#10;    }&#10;}&#10;&#10;// Configure IntelliJ Platform Gradle Plugin&#10;// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html&#10;dependencies {&#10;    testImplementation(kotlin(&quot;test&quot;))&#10;    testRuntimeOnly(&quot;junit:junit:4.13.2&quot;)&#10;&#10;    intellijPlatform {&#10;        create(&quot;IC&quot;, &quot;2025.1.4.1&quot;)&#10;        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)&#10;&#10;        // Add necessary plugin dependencies for compilation here, example:&#10;        // bundledPlugin(&quot;com.intellij.java&quot;)&#10;    }&#10;}&#10;&#10;intellijPlatform {&#10;    pluginConfiguration {&#10;        ideaVersion {&#10;            sinceBuild = &quot;251&quot;&#10;        }&#10;&#10;        changeNotes = &quot;&quot;&quot;&#10;            Initial version&#10;        &quot;&quot;&quot;.trimIndent()&#10;    }&#10;}&#10;&#10;tasks {&#10;    // Set the JVM compatibility versions&#10;    withType&lt;JavaCompile&gt; {&#10;        sourceCompatibility = &quot;21&quot;&#10;        targetCompatibility = &quot;21&quot;&#10;    }&#10;&#10;    test {&#10;        useJUnitPlatform()&#10;    }&#10;}&#10;&#10;kotlin {&#10;    jvmToolchain(21)&#10;&#10;    compilerOptions {&#10;        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/gradle.properties">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/gradle.properties" />
+              <option name="originalContent" value="# Opt-out flag for bundling Kotlin standard library -&gt; https://jb.gg/intellij-platform-kotlin-stdlib&#10;kotlin.stdlib.default.dependency=false&#10;# Enable Gradle Configuration Cache -&gt; https://docs.gradle.org/current/userguide/configuration_cache.html&#10;org.gradle.configuration-cache=true&#10;# Enable Gradle Build Cache -&gt; https://docs.gradle.org/current/userguide/build_cache.html&#10;org.gradle.caching=true&#10;" />
+              <option name="updatedContent" value="# Opt-out flag for bundling Kotlin standard library -&gt; https://jb.gg/intellij-platform-kotlin-stdlib&#10;kotlin.stdlib.default.dependency=false&#10;# Enable Gradle Configuration Cache -&gt; https://docs.gradle.org/current/userguide/configuration_cache.html&#10;org.gradle.configuration-cache=true&#10;# Enable Gradle Build Cache -&gt; https://docs.gradle.org/current/userguide/build_cache.html&#10;org.gradle.caching=true&#10;&#10;# Speed up local builds where tasks are independent.&#10;org.gradle.parallel=true&#10;&#10;# Keep Kotlin formatting defaults explicit across IDE/CI.&#10;kotlin.code.style=official&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/settings.gradle.kts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/settings.gradle.kts" />
+              <option name="originalContent" value="rootProject.name = &quot;seamless_bitbucket_comments&quot;" />
+              <option name="updatedContent" value="rootProject.name = &quot;seamless-bitbucket-comments&quot;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/kotlin/dev/silverhorn/fca/seamless/bitbucket/comments/PluginMetadata.kt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/kotlin/dev/silverhorn/fca/seamless/bitbucket/comments/PluginMetadata.kt" />
+              <option name="updatedContent" value="package dev.silverhorn.fca.seamless.bitbucket.comments&#10;&#10;/**&#10; * Central place for plugin constants used by production code and tests.&#10; */&#10;object PluginMetadata {&#10;    const val PLUGIN_ID: String = &quot;dev.silverhorn.fca.seamless_bitbucket_comments&quot;&#10;    const val DISPLAY_NAME: String = &quot;Seamless Bitbucket Comments&quot;&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/main/resources/META-INF/plugin.xml" />
+              <option name="originalContent" value="&lt;!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html --&gt;&#10;&lt;idea-plugin&gt;&#10;    &lt;!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. --&gt;&#10;    &lt;id&gt;dev.silverhorn.fca.seamless_bitbucket_comments&lt;/id&gt;&#10;&#10;    &lt;!-- Public plugin name should be written in Title Case.&#10;         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name --&gt;&#10;    &lt;name&gt;Seamless_bitbucket_comments&lt;/name&gt;&#10;&#10;    &lt;!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. --&gt;&#10;    &lt;vendor url=&quot;https://www.yourcompany.com&quot;&gt;YourCompany&lt;/vendor&gt;&#10;&#10;    &lt;!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.&#10;         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description --&gt;&#10;    &lt;description&gt;&lt;![CDATA[&#10;        Enter short description for your plugin here.&lt;br&gt;&#10;        &lt;em&gt;most HTML tags may be used&lt;/em&gt;&#10;    ]]&gt;&lt;/description&gt;&#10;&#10;    &lt;!-- Product and plugin compatibility requirements.&#10;         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html --&gt;&#10;    &lt;depends&gt;com.intellij.modules.platform&lt;/depends&gt;&#10;&#10;    &lt;!-- Extension points defined by the plugin.&#10;         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html --&gt;&#10;    &lt;extensions defaultExtensionNs=&quot;com.intellij&quot;&gt;&#10;&#10;    &lt;/extensions&gt;&#10;&lt;/idea-plugin&gt;" />
+              <option name="updatedContent" value="&lt;!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html --&gt;&#10;&lt;idea-plugin&gt;&#10;    &lt;!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. --&gt;&#10;    &lt;id&gt;dev.silverhorn.fca.seamless_bitbucket_comments&lt;/id&gt;&#10;&#10;    &lt;!-- Public plugin name should be written in Title Case.&#10;         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name --&gt;&#10;    &lt;name&gt;Seamless Bitbucket Comments&lt;/name&gt;&#10;&#10;    &lt;!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. --&gt;&#10;    &lt;vendor url=&quot;https://github.com/silverhorn-dev&quot;&gt;silverhorn.dev&lt;/vendor&gt;&#10;&#10;    &lt;!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.&#10;         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description --&gt;&#10;    &lt;description&gt;&lt;![CDATA[&#10;        Streamlined Bitbucket comment workflows directly in IntelliJ-based IDEs.&#10;    ]]&gt;&lt;/description&gt;&#10;&#10;    &lt;!-- Product and plugin compatibility requirements.&#10;         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html --&gt;&#10;    &lt;depends&gt;com.intellij.modules.platform&lt;/depends&gt;&#10;&#10;    &lt;!-- Extension points defined by the plugin.&#10;         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html --&gt;&#10;    &lt;extensions defaultExtensionNs=&quot;com.intellij&quot;&gt;&#10;&#10;    &lt;/extensions&gt;&#10;&lt;/idea-plugin&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/kotlin/dev/silverhorn/fca/seamless/bitbucket/comments/PluginMetadataTest.kt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/test/kotlin/dev/silverhorn/fca/seamless/bitbucket/comments/PluginMetadataTest.kt" />
+              <option name="updatedContent" value="package dev.silverhorn.fca.seamless.bitbucket.comments&#10;&#10;import kotlin.test.Test&#10;import kotlin.test.assertEquals&#10;import kotlin.test.assertTrue&#10;&#10;class PluginMetadataTest {&#10;&#10;    @Test&#10;    fun `plugin id uses expected namespace`() {&#10;        assertEquals(&quot;dev.silverhorn.fca.seamless_bitbucket_comments&quot;, PluginMetadata.PLUGIN_ID)&#10;    }&#10;&#10;    @Test&#10;    fun `display name is human readable`() {&#10;        assertTrue(PluginMetadata.DISPLAY_NAME.contains(&quot; &quot;))&#10;    }&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
