@@ -5,6 +5,7 @@ import com.intellij.openapi.Disposable
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.editor.LogicalPosition
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.editor.markup.HighlighterLayer
 import com.intellij.openapi.editor.markup.HighlighterTargetArea
@@ -196,7 +197,9 @@ class GutterCommentIconRenderer private constructor(
             val document = editor.document
             val markupModel = editor.markupModel
 
-            for (line in 0 until document.lineCount) {
+            val (startLine, endLine) = visibleLineRange(editor, document.lineCount)
+
+            for (line in startLine..endLine) {
                 val lineStart = document.getLineStartOffset(line)
                 val highlighter: RangeHighlighter = markupModel.addRangeHighlighter(
                     lineStart, lineStart,
@@ -217,6 +220,22 @@ class GutterCommentIconRenderer private constructor(
 
                 Disposer.register(parentDisposable) { highlighter.dispose() }
             }
+        }
+
+        /**
+         * Returns the current visible line range in the editor.
+         * This avoids creating thousands of highlighters on large files.
+         */
+        private fun visibleLineRange(editor: Editor, lineCount: Int): Pair<Int, Int> {
+            if (lineCount <= 0) return 0 to 0
+
+            val area = editor.scrollingModel.visibleArea
+            val start = editor.xyToLogicalPosition(java.awt.Point(0, area.y)).line
+            val end = editor.xyToLogicalPosition(java.awt.Point(0, area.y + area.height)).line
+
+            val clampedStart = start.coerceIn(0, lineCount - 1)
+            val clampedEnd = end.coerceIn(clampedStart, lineCount - 1)
+            return clampedStart to clampedEnd
         }
     }
 }
