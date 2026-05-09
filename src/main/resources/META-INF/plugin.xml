@@ -13,16 +13,68 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
     <description><![CDATA[
-        Streamlined Bitbucket comment workflows directly in IntelliJ-based IDEs.
+        Deep integration with Atlassian Bitbucket Server 9.x commit comments
+        directly inside the IntelliJ diff viewer and VCS log.
     ]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends>Git4Idea</depends>
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+
+        <!-- ── Application-scoped services ───────────────────────────────── -->
+
+        <!-- Persists non-sensitive settings (server URL, user slug) -->
+        <applicationService
+            serviceInterface="dev.silverhorn.fca.seamless.bitbucket.comments.platform.settings.BitbucketSettingsState"
+            serviceImplementation="dev.silverhorn.fca.seamless.bitbucket.comments.platform.settings.BitbucketSettingsState"/>
+
+        <!-- LRU cache: commitHash → CommitCommentSummary -->
+        <applicationService
+            serviceInterface="dev.silverhorn.fca.seamless.bitbucket.comments.platform.CommentCache"
+            serviceImplementation="dev.silverhorn.fca.seamless.bitbucket.comments.platform.CommentCache"/>
+
+        <!-- Settings page under Tools → Seamless Bitbucket Comments -->
+        <applicationConfigurable
+            parentId="tools"
+            id="dev.silverhorn.fca.seamless.bitbucket.comments.settings"
+            displayName="Seamless Bitbucket Comments"
+            instance="dev.silverhorn.fca.seamless.bitbucket.comments.platform.settings.BitbucketConfigurable"/>
+
+        <!-- Notification group for API errors -->
+        <notificationGroup
+            id="SeamlessBitbucketComments"
+            displayType="BALLOON"/>
+
+        <!-- ── Project-scoped services ────────────────────────────────────── -->
+
+        <!-- Central façade for commit-comment operations per project -->
+        <projectService
+            serviceInterface="dev.silverhorn.fca.seamless.bitbucket.comments.platform.CommitCommentService"
+            serviceImplementation="dev.silverhorn.fca.seamless.bitbucket.comments.platform.CommitCommentService"/>
+
+        <!-- ── Startup ────────────────────────────────────────────────────── -->
+
+        <!-- Loads credentials from PasswordSafe and warms the cache -->
+        <postStartupActivity
+            implementation="dev.silverhorn.fca.seamless.bitbucket.comments.platform.PluginStartupActivity"/>
+
+        <!-- ── Diff viewer ────────────────────────────────────────────────── -->
+
+        <!-- Injects comment inlays and gutter icons into TwosideTextDiffViewer -->
+        <diff.DiffExtension
+            implementation="dev.silverhorn.fca.seamless.bitbucket.comments.ui.diff.CommitDiffExtension"/>
+
+        <!-- ── VCS Log ────────────────────────────────────────────────────── -->
+
+        <!-- Adds a custom column showing comment count + mention badge -->
+        <vcs.log.custom.column
+            implementation="dev.silverhorn.fca.seamless.bitbucket.comments.ui.vcslog.CommentCountColumn"/>
 
     </extensions>
 </idea-plugin>

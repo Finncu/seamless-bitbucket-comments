@@ -14,9 +14,10 @@ repositories {
     }
 }
 
-// Configure IntelliJ Platform Gradle Plugin
-// Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
+    // Jackson for JSON (de)serialisation ? ignores unknown fields by default via ObjectMapper config
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+
     testImplementation(kotlin("test"))
     testRuntimeOnly("junit:junit:4.13.2")
 
@@ -24,8 +25,8 @@ dependencies {
         create("IC", "2025.1.4.1")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
 
-        // Add necessary plugin dependencies for compilation here, example:
-        // bundledPlugin("com.intellij.java")
+        // Git4Idea provides VCS log APIs (VcsLogCustomColumn, VcsLogHighlighter, etc.)
+        bundledPlugin("Git4Idea")
     }
 }
 
@@ -36,7 +37,7 @@ intellijPlatform {
         }
 
         changeNotes = """
-            Initial version
+            0.1.0 ? Initial architecture: Bitbucket Server 9.4 commit-comment integration.
         """.trimIndent()
     }
 }

@@ -15,5 +15,14 @@ class PluginMetadataTest {
     fun `display name is human readable`() {
         assertTrue(PluginMetadata.DISPLAY_NAME.contains(" "))
     }
-}
 
+    @Test
+    fun `settings configurable id matches plugin id prefix`() {
+        assertTrue(PluginMetadata.SETTINGS_CONFIGURABLE_ID.startsWith("dev.silverhorn.fca"))
+    }
+
+    @Test
+    fun `notification group id is not blank`() {
+        assertTrue(PluginMetadata.NOTIFICATION_GROUP_ID.isNotBlank())
+    }
+}
