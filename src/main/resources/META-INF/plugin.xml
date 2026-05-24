@@ -73,8 +73,7 @@
         <!-- ── VCS Log ────────────────────────────────────────────────────── -->
 
         <!-- Adds a custom column showing comment count + mention badge -->
-        <vcs.log.custom.column
-            implementation="dev.silverhorn.fca.seamless.bitbucket.comments.ui.vcslog.CommentCountColumn"/>
+<!--        <vcsLogCustomColumn implementation="dev.silverhorn.fca.seamless.bitbucket.comments.ui.vcslog.CommentCountColumn" />-->
 
     </extensions>
 </idea-plugin>

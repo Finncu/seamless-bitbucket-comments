@@ -52,8 +52,8 @@ class BitbucketConfigurable : SearchableConfigurable {
     override fun createComponent(): JComponent {
         panel = FormBuilder.createFormBuilder()
             .addLabeledComponent(JBLabel("Server URL:"), serverUrlField, true)
-            .addLabeledComponent(JBLabel("Project key:"), projectKeyField, true)
-            .addLabeledComponent(JBLabel("Repository slug:"), repoSlugField, true)
+//            .addLabeledComponent(JBLabel("Project key:"), projectKeyField, true)
+//            .addLabeledComponent(JBLabel("Repository slug:"), repoSlugField, true)
             .addLabeledComponent(JBLabel("Personal Access Token:"), tokenField, true)
             .addComponentFillVertically(JPanel(), 0)
             .panel

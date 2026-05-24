@@ -154,15 +154,12 @@ class CommitDiffExtension : DiffExtension() {
      * Resolves hashes from request title and both editor backing file paths.
      */
     private fun resolveHashes(viewer: TwosideTextDiffViewer, title: String): Pair<String?, String?> {
-        val fileManager = FileDocumentManager.getInstance()
-        val leftPath = fileManager.getFile(viewer.editor1.document)?.path.orEmpty()
-        val rightPath = fileManager.getFile(viewer.editor2.document)?.path.orEmpty()
+//        viewer.content1.document.
+//        return viewer.contents.map { it.getUserData(it.) }
+//        Pair((viewer.content1 as DiffContentFactoryImpl.ContextReferentDocumentContent).get().let { it.get(it.keys.get(1)) }
+//        , (viewer as SimpleDiffViewer).diffChanges)
 
-        val fromTitle = extractHashesFromTitle(title)
-        if (fromTitle.second != null) return fromTitle
-
-        val fromPaths = extractHashesFromTitle("$leftPath $rightPath")
-        return fromPaths
+        return viewer.request.contentTitles.let { Pair(it.first(), it.last())}
     }
 
     /**
