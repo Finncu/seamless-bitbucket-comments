@@ -17,6 +17,9 @@ repositories {
 dependencies {
     // Jackson for JSON (de)serialisation ? ignores unknown fields by default via ObjectMapper config
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.2")
+    implementation("com.atlassian.bitbucket.server:bitbucket-comment-likes-api:11.0.0")
+    implementation("com.atlassian.bitbucket.server:bitbucket-api:11.0.0")
+    implementation("com.atlassian.bitbucket.server:bitbucket-branch-api:11.0.0")
 
     testImplementation(kotlin("test"))
     testRuntimeOnly("junit:junit:4.13.2")
